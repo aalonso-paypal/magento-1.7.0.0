@@ -171,8 +171,8 @@ class Mage_Paypal_Model_Config
      * @var array
      */
     protected $_buildNotationPPMap = array(
-        'paypal_standard' => 'Magento_PPExtension_CE_WPS_1620',
-        'paypal_express'  => 'Magento_PPExtension_CE_EC_1620',
+        'paypal_standard' => 'Magento_PPExtension_CE_WPS_1700',
+        'paypal_express'  => 'Magento_PPExtension_CE_EC_1700',
         'paypal_direct'    => 'DP',
         'paypaluk_express' => 'EC',
         'paypaluk_direct'  => 'DP',
@@ -628,8 +628,7 @@ class Mage_Paypal_Model_Config
      */
     public function getExpressCheckoutShortcutImageUrl($localeCode, $orderTotal = null, $pal = null)
     {
-        
-        if ($this->buttonType === self::EC_BUTTON_TYPE_MARK) {
+       if ($this->buttonType === self::EC_BUTTON_TYPE_MARK) {
             return $this->getPaymentMarkImageUrl($localeCode);
         }
         return sprintf('https://www.paypal-brasil.com.br/logocenter/util/img/compra_express.png',
@@ -648,8 +647,7 @@ class Mage_Paypal_Model_Config
      */
     public function getPaymentMarkImageUrl($localeCode, $orderTotal = null, $pal = null, $staticSize = null)
     {
-       
-        if (null === $staticSize) {
+       if (null === $staticSize) {
             $staticSize = $this->paymentMarkSize;
         }
         switch ($staticSize) {
