@@ -331,7 +331,7 @@ class Mage_Sales_Model_Order_Payment extends Mage_Payment_Model_Info
             $orderIsNotified = $stateObject->getIsNotified();
         } else {
             $orderStatus = $methodInstance->getConfigData('order_status');
-            if (!$orderStatus || $order->getIsVirtual()) {
+            if (!$orderStatus) {
                 $orderStatus = $order->getConfig()->getStateDefaultStatus($orderState);
             }
         }
@@ -1024,11 +1024,6 @@ class Mage_Sales_Model_Order_Payment extends Mage_Payment_Model_Info
         if ($isOnline) {
             // invoke authorization on gateway
             $this->getMethodInstance()->setStore($order->getStoreId())->authorize($this, $amount);
-        } else {
-            $message = Mage::helper('sales')->__(
-                'Registered notification about authorized amount of %s.',
-                $this->_formatPrice($amount)
-            );
         }
 
         // similar logic of "payment review" order as in capturing
@@ -1463,7 +1458,7 @@ class Mage_Sales_Model_Order_Payment extends Mage_Payment_Model_Info
         }
     }
 
-/**
+ /**
      * Decide whether authorization transaction may close (if the amount to capture will cover entire order)
      * @param float $amountToCapture
      * @return bool
