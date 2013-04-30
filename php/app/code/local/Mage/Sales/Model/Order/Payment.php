@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -1458,7 +1458,7 @@ class Mage_Sales_Model_Order_Payment extends Mage_Payment_Model_Info
         }
     }
 
-    /**
+ /**
      * Decide whether authorization transaction may close (if the amount to capture will cover entire order)
      * @param float $amountToCapture
      * @return bool
@@ -1466,8 +1466,10 @@ class Mage_Sales_Model_Order_Payment extends Mage_Payment_Model_Info
     protected function _isCaptureFinal($amountToCapture)
     {
         $amountToCapture = $this->_formatAmount($amountToCapture, true);
-        $orderGrandTotal = $this->_formatAmount($this->getOrder()->getBaseGrandTotal(), true);
-        if ($orderGrandTotal == $this->_formatAmount($this->getBaseAmountPaid(), true) + $amountToCapture) {
+        // $orderGrandTotal = $this->_formatAmount($this->getOrder()->getBaseGrandTotal(), true);
+       // if ($orderGrandTotal == $this->_formatAmount($this->getBaseAmountPaid(), true) + $amountToCapture) {
+        $orderGrandTotal =  $this->getOrder()->getBaseGrandTotal();
+        if (abs($orderGrandTotal - ($this->getBaseAmountPaid() + $amountToCapture)) < 0.01 ) { 
             if (false !== $this->getShouldCloseParentTransaction()) {
                 $this->setShouldCloseParentTransaction(true);
             }

@@ -642,7 +642,7 @@ class Mage_Paypal_Model_Config
         if ($this->buttonType === self::EC_BUTTON_TYPE_MARK) {
             return $this->getPaymentMarkImageUrl($localeCode);
         }
-        return sprintf('https://www.paypal.com/%s/i/btn/btn_xpressCheckout.gif',
+        return sprintf('https://www.paypal-brasil.com.br/logocenter/util/img/compra_express.png',
             $this->_getSupportedLocaleCode($localeCode));
     }
 
@@ -674,7 +674,7 @@ class Mage_Paypal_Model_Config
             default:
                 $staticSize = self::PAYMENT_MARK_37x23;
         }
-        return sprintf('https://www.paypal.com/%s/i/logo/PayPal_mark_%s.gif',
+        return sprintf('https://www.paypal-brasil.com.br/logocenter/util/img/paypal_nf_v01.png',
             $this->_getSupportedLocaleCode($localeCode), $staticSize);
     }
 
